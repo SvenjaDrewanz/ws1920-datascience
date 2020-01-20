@@ -77,7 +77,7 @@ get.norm_values <- function (.data, select_columns = NULL) {
 
 ### Aufbereitung der Daten ###
 ```{r}
-# Einlesen von Trainings-und Testdaten
+# Einlesen der Daten
 house_pricing <- read_csv("https://raw.githubusercontent.com/opencampus-sh/ws1920-datascience/master/house_pricing_test.csv")
 
 ```
