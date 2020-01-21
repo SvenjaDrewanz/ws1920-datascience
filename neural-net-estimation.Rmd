@@ -107,7 +107,7 @@ label = 'price_norm'
 # Zufallszähler setzen, um die zufällige Partitionierung bei jedem Durchlauf gleich zu halten
 set.seed(1)
 # Bestimmung der Indizes des Traininsdatensatzes
-train_ind <- sample(seq_len(nrow(dataset)), size = floor(0.80 * nrow(dataset)))
+train_ind <- sample(seq_len(nrow(house_pricing_norm)), size = floor(0.80 * nrow(house_pricing_norm)))
 
 # Teilen in Trainings- und Testdatensatz
 train_dataset = house_pricing_norm[train_ind, features]
@@ -190,8 +190,8 @@ train_predictions_norm <- py$model$predict(train_dataset)
 test_predictions_norm <- py$model$predict(test_dataset)
 
 # Rückberechnung der normierten Preisschätzungen zu den tatsächlichen Preisschätzungen bzw. Preisen
-train_predictions <- (train_predictions_norm * norm_values_list$sd[1] ) + norm_values_list$sd[1]
-test_predictions <- (test_predictions_norm * norm_values_list$sd[1]) + norm_values_list$sd[1]
+train_predictions <- (train_predictions_norm * norm_values_list$sd[1] ) + norm_values_list$mean[1]
+test_predictions <- (test_predictions_norm * norm_values_list$sd[1]) + norm_values_list$mean[1]
 # Selektion der zugehörigen tatsächlichen Preise
 train_actuals <- house_pricing$price[train_ind]
 test_actuals <- house_pricing$price[-train_ind]
